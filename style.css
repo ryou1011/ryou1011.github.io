@@ -1,0 +1,287 @@
+
+/* 1) Remove underlines & set default link color site-wide */
+a {
+  color: #64ffda; /* or another color you prefer */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* 2) On hover, show a bright yellow box and change text to black */
+a:hover {
+  color: #1a1a1a;          /* black text */
+  background-color: #ffff00; /* opaque yellow background */
+  padding: 2px 4px;       /* slight padding around the text */
+  border-radius: 4px;     /* optional rounded corners */
+}
+
+/* Custom text selection: instead of blue, the text turns yellow */
+::selection {
+    background: transparent;
+    color: yellow;
+  }
+  
+  ::-moz-selection {
+    background: transparent;
+    color: yellow;
+  }
+  
+  :root {
+    --background: #1a1a1a; /* Dark grey background */
+    --text: #ffffff; /* White text */
+    --primary: #64ffda;
+    --secondary: #8892b0;
+    --grid-bg: #f2f2f2; /* Light grey for grid items */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  
+/* Nav Container */
+nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(17, 17, 17, 0.9); /* Slightly opaque */
+    color: #fff;
+    width: 450px;         /* Expanded width */
+    height: 60px;         /* Fixed height */
+    border-radius: 30px;  /* Oval with flat sides (adjust as needed) */
+    padding: 0;
+    overflow: hidden;
+    z-index: 9999;
+  }
+  
+  /* The inner content is always visible */
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  
+  /* Ensure text elements don't wrap awkwardly */
+  .name, .role, .location {
+    white-space: nowrap;
+    margin: 0 5px;
+  }  
+  
+  
+  /* Hero Section: Interactive Logo & Bio Side-by-Side */
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    gap: 40px;
+    margin-top: 80px; /* To avoid overlap with the fixed nav */
+  }
+  
+  .hero-logo {
+    flex: 1;
+    position: relative;
+    height: 100%;
+  }
+  
+  #nameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .hero-bio {
+    flex: 1;
+    color: var(--text);
+    font-size: 1.2em;
+  }
+  
+  .hero-bio h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-bio p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Grid Section (Masonry-Style Large Grid) */
+  .grid-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    padding: 20px 0;
+  }
+  
+  .grid-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .grid-container {
+    column-count: 2;
+    column-gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .grid-item {
+    background-color: var(--grid-bg);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid transparent;
+    background-image: linear-gradient(white, white), linear-gradient(135deg, #64ffda, #8892b0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+  
+  /* On hover, grid boxes scale down slightly */
+  .grid-item:hover {
+    transform: scale(0.95);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Grid info tab that appears on hover in the top-right corner */
+  .grid-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(100, 255, 218, 0.9);
+    color: #1a1a1a;
+    padding: 5px 10px;
+    border-radius: 0 0 0 10px;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  .grid-item:hover .grid-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Placeholder inside grid item */
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    padding: 40px 20px;
+    background-color: #2a2a2a;
+    color: #fff;
+    /* You can remove or change outline below if you're still testing layout */
+    /* outline: 1px solid white; */
+  }
+  
+  .contact-section {
+    padding: 40px 20px;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .contact-container {
+    /* Two-column flex layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* center container if you like */
+    margin: 0 auto;
+  }
+  
+  .left-info {
+    font-size: 20px; /* adjust as desired */
+  }
+  
+  .right-info {
+    text-align: right; /* or left if you prefer */
+    font-size: 16px;
+  }
+
+  
+  
+  /* Modal Overlay Styles (unchanged) */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .modal-overlay.active {
+    display: flex;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background-color: var(--background);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--text);
+    z-index: 11;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .grid-container {
+      column-count: 1;
+    }
+    
+    .hero-section {
+      flex-direction: column;
+    }
+  }
+  

@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-          <span class="name">Ryan You</span>
-          <span class="role">Web Developer</span>
-          <span class="location">📍Los Angeles</span>
-        </div>
-    </nav>
+  <nav>
+    <div class="nav-content">
+      <span class="name">Ryan You</span>
+      <span class="role">Web Developer</span>
+      <span class="location">📍Los Angeles</span>
+    </div>
+  </nav>
       
   <!-- Hero Section: Interactive Logo & Bio Side-by-Side -->
   <section class="hero-section">
@@ -33,10 +33,10 @@
     <!-- Grid Section -->
     <section class="grid-section">
       <div class="grid-container">
-        <!-- First Project Box: Wrapped in an anchor tag to link to project1.html -->
-        <a href="project1.html" class="grid-link">
+        <!-- First Project Box: Opens project1.html in a new tab with an image -->
+        <a href="project1.html" target="_blank" rel="noopener noreferrer" class="grid-link">
           <div class="grid-item">
-            <div class="placeholder">Coming Soon</div>
+            <img src="iamge.png" alt="Project 1 Image">
             <div class="grid-info">Project 1</div>
           </div>
         </a>
@@ -58,27 +58,28 @@
     </section>
 
     <section class="contact-section">
-        <div class="contact-container">
-          <!-- Left column: email -->
-          <div class="left-info">
-            <p>✉️youryan62@gmail.com</p>
-          </div>
-          
-          <!-- Right column: social media + message -->
-          <div class="right-info">
-            <a href="https://www.linkedin.com/in/ryan-you-65401a256/" target="_blank">LinkedIn</a><br>
-            <a href="https://www.instagram.com/ryou10111011/" target="_blank">Instagram</a><br>
-          </div>
+      <div class="contact-container">
+        <!-- Left column: email -->
+        <div class="left-info">
+          <p>✉️youryan62@gmail.com</p>
         </div>
+          
+        <!-- Right column: social media + message -->
+        <div class="right-info">
+          <a href="https://www.linkedin.com/in/ryan-you-65401a256/" target="_blank">LinkedIn</a><br>
+          <a href="https://www.instagram.com/ryou10111011/" target="_blank">Instagram</a><br>
+        </div>
+      </div>
     </section>
       
-  <!-- Modal Overlay for Project Details -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-content">
-      <span class="close-btn" id="closeModal">&times;</span>
-      <iframe id="modalIframe" src="" frameborder="0"></iframe>
+    <!-- Modal Overlay for Project Details -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <iframe id="modalIframe" src="" frameborder="0"></iframe>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>

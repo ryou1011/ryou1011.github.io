@@ -1,28 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aimals Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Statistics: Proportions Study Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 0.5rem;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #4a6b8a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        .formula {
+            background-color: #f1f8ff;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+        .example {
+            background-color: #f0fff0;
+            border-left: 4px solid #27ae60;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .comparison-item {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0.25rem;
+            border-radius: 3px;
+        }
+        .tip {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="name">Ryan You</a>
-    <span class="role">Web Developer</span>
-    <span class="location">Your Location</span>
-  </nav>
-  <div class="project-details">
-    <h1>Aimals Project</h1>
-    <p>This is a detailed explanation of the Aimals Project. It includes information about what the project does, the technologies I used to create it, and what I learned from building it.</p>
-    <!-- Add more content, images, or links as needed -->
-  </div>
-  <script>
-    // Hide the navigation bar if this page is loaded within an iframe (i.e. in the modal popout)
-    if (window.self !== window.top) {
-      document.querySelector('nav').style.display = 'none';
-    }
-  </script>
-</body>
-</html>
+    <header>
+        <h1>AP Statistics: Understanding Proportions</h1>
+        <p>Confidence Intervals and Hypothesis Testing for One and Two Proportions</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#one-proportion-ci">One Proportion CI</a></li>
+            <li><a href="#two-proportion-ci">Two Proportion CI</a></li>
+            <li><a href="#one-proportion-ht">One Proportion HT</a></li>
+            <li><a href="#two-proportion-ht">Two Proportion HT</a></li>
+            <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#practice">Practice Problems</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section class="section" id="introduction">
+            <h2>Introduction to Proportions in Statistics</h2>
+            <p>In AP Statistics, we often need to analyze proportions - the fraction of a population or sample with a particular characteristic. This guide covers:</p>
+            <ul>
+                <li>One-proportion confidence intervals</li>
+                <li>Two-proportion confidence intervals</li>
+                <li>One-proportion hypothesis tests</li>
+                <li>Two-proportion hypothesis tests</li>
+            </ul>
+            <p>Each method serves a specific purpose in statistical analysis, and understanding when to use each approach is crucial for success in AP Statistics.</p>
+        </section>
+
+        <section class="section" id="one-proportion-ci">
+            <h2>One-Proportion Confidence Intervals</h2>
+            <p>A one-proportion confidence interval estimates the true population proportion (p) based on a single sample proportion.</p>
+            
+            <h3>When to Use</h3>
+            <p>Use a one-proportion confidence interval when you want to estimate an unknown population proportion based on a single sample.</p>
+            
+            <h3>Conditions for Validity</h3>
+            <ul>
+                <li>Random Sample: The data comes from a random sample or randomized experiment</li>
+                <li>Independence: Observations are independent (sample size ≤ 10% of population or sampling with replacement)</li>
+                <li>Large Sample: Both np ≥ 10 and n(1-p) ≥ 10, where p̂ is the sample proportion</li>
+            </ul>
+            
+            <h3>Formula</h3>
+            <div class="formula">
+                p̂ ± z* × √[p̂(1-p̂)/n]
+                <br><br>
+                Where:
+                <br>
+                p̂ = x/n (sample proportion)
+                <br>
+                x = number of successes
+                <br>
+                n = sample size
+                <br>
+                z* = critical value for desired confidence level (e.g., 1.96 for 95% confidence)
+            </div>
+            
+            <h3>Example</h3>
+            <div class="example">
+                <p><strong>Problem:</strong> A random sample of 120 AP Statistics students found that 84 passed the AP exam. Construct a 95% confidence interval for the true proportion of all AP Statistics students who pass the exam.</p>
+                
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Calculate the sample proportion: p̂ = 84/120 = 0.7</li>
+                    <li>Check conditions:
+                        <ul>
+                            <li>Random sample ✓</li>
+                            <li>Independence: 120 is less than 10% of all AP Statistics students ✓</li>
+                            <li>Large sample: np̂ = 120(0.7) = 84 ≥ 10 and n(1-p̂) = 120(0.3) = 36 ≥ 10 ✓</li>
+                        </ul>
+                    </li>
+                    <li>Critical value for 95% confidence: z* = 1.96</li>
+                    <li>Standard error: √[p̂(1-p̂)/n] = √[0.7(0.3)/120] = √[0.21/120] = √0.00175 = 0.0418</li>
+                    <li>Margin of error: 1.96 × 0.0418 = 0.082</li>
+                    <li>Confidence interval: 0.7 ± 0.082 = (0.618, 0.782)</li>
+                </ol>
+                
+                <p><strong>Interpretation:</strong> We are 95% confident that the true proportion of all AP Statistics students who pass the exam is between 0.618 and 0.782 (or between 61.8% and 78.2%).</p>
+            </div>
+        </section>
+
+        <section class="section" id="two-proportion-ci">
+            <h2>Two-Proportion Confidence Intervals</h2>
+            <p>A two-proportion confidence interval estimates the difference between two population proportions (p₁ - p₂) based on two sample proportions.</p>
+            
+            <h3>When to Use</h3>
+            <p>Use a two-proportion confidence interval when comparing proportions from two different groups or populations.</p>
+            
+            <h3>Conditions for Validity</h3>
+            <ul>
+                <li>Random Samples: Both samples are random or from randomized experiments</li>
+                <li>Independence: Samples are independent of each other</li>
+                <li>Large Samples: For both samples, np ≥ 10 and n(1-p) ≥ 10</li>
+            </ul>
+            
+            <h3>Formula</h3>
+            <div class="formula">
+                (p̂₁ - p̂₂) ± z* × √[p̂₁(1-p̂₁)/n₁ + p̂₂(1-p̂₂)/n₂]
+                <br><br>
+                Where:
+                <br>
+                p̂₁ = x₁/n₁ (first sample proportion)
+                <br>
+                p̂₂ = x₂/n₂ (second sample proportion)
+                <br>
+                n₁, n₂ = sample sizes
+                <br>
+                z* = critical value for desired confidence level
+            </div>
+            
+            <h3>Example</h3>
+            <div class="example">
+                <p><strong>Problem:</strong> A study compared two test preparation methods for the AP Statistics exam. In group A, 78 out of 100 students passed, while in group B, 65 out of 95 students passed. Construct a 90% confidence interval for the difference in passing proportions between methods A and B.</p>
+                
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>Calculate sample proportions:
+                        <ul>
+                            <li>p̂₁ = 78/100 = 0.78 (group A)</li>
+                            <li>p̂₂ = 65/95 = 0.684 (group B)</li>
+                        </ul>
+                    </li>
+                    <li>Check conditions:
+                        <ul>
+                            <li>Random samples ✓</li>
+                            <li>Independence: Groups A and B are separate ✓</li>
+                            <li>Large samples: All np and n(1-p) values ≥ 10 ✓</li>
+                        </ul>
+                    </li>
+                    <li>Critical value for 90% confidence: z* = 1.645</li>
+                    <li>Standard error: √[0.78(0.22)/100 + 0.684(0.316)/95] = √[0.00172 + 0.00228] = √0.004 = 0.0632</li>
+                    <li>Margin of error: 1.645 × 0.0632 = 0.104</li>
+                    <li>Confidence interval: (0.78 - 0.684) ± 0.104 = 0.096 ± 0.104 = (-0.008, 0.2)</li>
+                </ol>
+                
+                <p><strong>Interpretation:</strong> We are 90% confident that the difference in passing proportions between methods A and B (p₁ - p₂) is between -0.008 and 0.2. Since this interval contains 0, we cannot be confident at the 90% level that there is a real difference between the methods.</p>
+            </div>
+        </section>
+
+        <section class="section" id="one-proportion-ht">
+            <h2>One-Proportion Hypothesis Testing</h2>
+            <p>A one-proportion hypothesis test determines whether a sample proportion provides evidence against a claimed value for the population proportion.</p>
+            
+            <h3>When to Use</h3>
+            <p>Use a one-proportion hypothesis test when you want to test a claim about a single population proportion.</p>
+            
+            <h3>Hypotheses</h3>
+            <p>Typically written as:</p>
+            <ul>
+                <li>H₀: p = p₀ (null hypothesis with claimed value)</li>
+                <li>H₁: p < p₀ or p > p₀ or p ≠ p₀ (alternative hypothesis)</li>
+            </ul>
+            
+            <h3>Conditions for Validity</h3>
+            <ul>
+                <li>Random Sample: The data comes from a random sample or randomized experiment</li>
+                <li>Independence: Observations are independent</li>
+                <li>Large Sample: Both np₀ ≥ 10 and n(1-p₀) ≥ 10, using the null hypothesis value p₀</li>
+            </ul>
+            
+            <h3>Test Statistic</h3>
+            <div class="formula">
+                z = (p̂ - p₀) / √[p₀(1-p₀)/n]
+                <br><br>
+                Where:
+                <br>
+                p̂ = x/n (sample proportion)
+                <br>
+                p₀ = claimed population proportion (null hypothesis value)
+                <br>
+                n = sample size
+            </div>
+            
+            <h3>P-value</h3>
+            <p>The p-value depends on the alternative hypothesis:</p>
+            <ul>
+                <li>H₁: p < p₀: P(Z ≤ z)</li>
+                <li>H₁: p > p₀: P(Z ≥ z)</li>
+                <li>H₁: p ≠ p₀: 2 × P(Z ≥ |z|)</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <div class="example">
+                <p><strong>Problem:</strong> A company claims that 60% of students who use their AP Statistics review book pass the exam. A statistics teacher is skeptical and believes the rate is lower. In a random sample of
+ 90 students who used the book, 45 passed the exam. Test the company's claim at α = 0.05.</p>
+                
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>State hypotheses:
+                        <ul>
+                            <li>H₀: p = 0.6</li>
+                            <li>H₁: p < 0.6 (one-sided test as the teacher believes the rate is lower)</li>
+                        </ul>
+                    </li>
+                    <li>Calculate sample proportion: p̂ = 45/90 = 0.5</li>
+                    <li>Check conditions:
+                        <ul>
+                            <li>Random sample ✓</li>
+                            <li>Independence ✓</li>
+                            <li>Large sample: np₀ = 90(0.6) = 54 ≥ 10 and n(1-p₀) = 90(0.4) = 36 ≥ 10 ✓</li>
+                        </ul>
+                    </li>
+                    <li>Calculate test statistic: z = (0.5 - 0.6) / √[0.6(0.4)/90] = -0.1 / √0.0027 = -0.1 / 0.052 = -1.92</li>
+                    <li>Calculate p-value: For H₁: p < 0.6, p-value = P(Z ≤ -1.92) = 0.0274</li>
+                    <li>Decision: Since p-value = 0.0274 < α = 0.05, reject H₀</li>
+                </ol>
+                
+                <p><strong>Conclusion:</strong> There is sufficient evidence to suggest that the passing rate is less than the company's claim of 60%.</p>
+            </div>
+        </section>
+
+        <section class="section" id="two-proportion-ht">
+            <h2>Two-Proportion Hypothesis Testing</h2>
+            <p>A two-proportion hypothesis test determines whether there is a significant difference between two population proportions.</p>
+            
+            <h3>When to Use</h3>
+            <p>Use a two-proportion hypothesis test when comparing proportions from two different groups or populations.</p>
+            
+            <h3>Hypotheses</h3>
+            <p>Typically written as:</p>
+            <ul>
+                <li>H₀: p₁ = p₂ (or p₁ - p₂ = 0)</li>
+                <li>H₁: p₁ < p₂ or p₁ > p₂ or p₁ ≠ p₂</li>
+            </ul>
+            
+            <h3>Conditions for Validity</h3>
+            <ul>
+                <li>Random Samples: Both samples are random or from randomized experiments</li>
+                <li>Independence: Samples are independent of each other</li>
+                <li>Large Samples: For both samples, np̂ ≥ 10 and n(1-p̂) ≥ 10 (using pooled proportion for checking)</li>
+            </ul>
+            
+            <h3>Pooled Proportion</h3>
+            <div class="formula">
+                p̂<sub>pooled</sub> = (x₁ + x₂) / (n₁ + n₂)
+                <br>
+                Where x₁, x₂ are successes in each sample
+            </div>
+            
+            <h3>Test Statistic</h3>
+            <div class="formula">
+                z = (p̂₁ - p̂₂) / √[p̂<sub>pooled</sub>(1-p̂<sub>pooled</sub>)(1/n₁ + 1/n₂)]
+                <br><br>
+                Where:
+                <br>
+                p̂₁ = x₁/n₁ (first sample proportion)
+                <br>
+                p̂₂ = x₂/n₂ (second sample proportion)
+            </div>
+            
+            <h3>P-value</h3>
+            <p>The p-value depends on the alternative hypothesis:</p>
+            <ul>
+                <li>H₁: p₁ < p₂: P(Z ≤ z)</li>
+                <li>H₁: p₁ > p₂: P(Z ≥ z)</li>
+                <li>H₁: p₁ ≠ p₂: 2 × P(Z ≥ |z|)</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <div class="example">
+                <p><strong>Problem:</strong> A researcher wants to know if there's a difference in passing rates between students who used online review materials vs. traditional textbooks for AP Statistics. Among 120 students who used online materials, 90 passed. Among 100 students who used textbooks, 65 passed. Test at α = 0.05.</p>
+                
+                <p><strong>Solution:</strong></p>
+                <ol>
+                    <li>State hypotheses:
+                        <ul>
+                            <li>H₀: p₁ = p₂ (no difference in passing rates)</li>
+                            <li>H₁: p₁ ≠ p₂ (there is a difference in passing rates)</li>
+                        </ul>
+                    </li>
+                    <li>Calculate sample proportions:
+                        <ul>
+                            <li>p̂₁ = 90/120 = 0.75 (online)</li>
+                            <li>p̂₂ = 65/100 = 0.65 (textbook)</li>
+                        </ul>
+                    </li>
+                    <li>Calculate pooled proportion:
+                        <br>p̂<sub>pooled</sub> = (90 + 65) / (120 + 100) = 155/220 = 0.705
+                    </li>
+                    <li>Check conditions:
+                        <ul>
+                            <li>Random samples ✓</li>
+                            <li>Independence ✓</li>
+                            <li>Large samples: All np and n(1-p) ≥ 10 using pooled proportion ✓</li>
+                        </ul>
+                    </li>
+                    <li>Calculate test statistic:
+                        <br>z = (0.75 - 0.65) / √[0.705(0.295)(1/120 + 1/100)]
+                        <br>= 0.1 / √[0.208(0.0083 + 0.01)]
+                        <br>= 0.1 / √[0.208 × 0.0183]
+                        <br>= 0.1 / √0.0038
+                        <br>= 0.1 / 0.0617
+                        <br>= 1.62
+                    </li>
+                    <li>Calculate p-value: For H₁: p₁ ≠ p₂, p-value = 2 × P(Z ≥ 1.62) = 2 × 0.0526 = 0.1052</li>
+                    <li>Decision: Since p-value = 0.1052 > α = 0.05, fail to reject H₀</li>
+                </ol>
+                
+                <p><strong>Conclusion:</strong> There is not sufficient evidence to conclude that there is a difference in passing rates between online review materials and traditional textbooks.</p>
+            </div>
+        </section>
+
+        <section class="section" id="comparison">
+            <h2>Comparison: One vs. Two Proportion Methods</h2>
+            
+            <h3>Confidence Intervals</h3>
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h4>One-Proportion CI</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Estimate a single population proportion</li>
+                        <li><strong>Data:</strong> One sample</li>
+                        <li><strong>Formula:</strong> p̂ ± z* × √[p̂(1-p̂)/n]</li>
+                        <li><strong>Example Use:</strong> Estimating the proportion of all AP Statistics students who will pass the exam</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h4>Two-Proportion CI</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Estimate the difference between two population proportions</li>
+                        <li><strong>Data:</strong> Two independent samples</li>
+                        <li><strong>Formula:</strong> (p̂₁ - p̂₂) ± z* × √[p̂₁(1-p̂₁)/n₁ + p̂₂(1-p̂₂)/n₂]</li>
+                        <li><strong>Example Use:</strong> Comparing pass rates between two different teaching methods</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Hypothesis Tests</h3>
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h4>One-Proportion Test</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Test a claim about a single population proportion</li>
+                        <li><strong>Null Hypothesis:</strong> p = p₀</li>
+                        <li><strong>Test Statistic:</strong> z = (p̂ - p₀) / √[p₀(1-p₀)/n]</li>
+                        <li><strong>Example Use:</strong> Testing if a passing rate differs from a claimed value</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h4>Two-Proportion Test</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Test if two population proportions differ</li>
+                        <li><strong>Null Hypothesis:</strong> p₁ = p₂</li>
+                        <li><strong>Test Statistic:</strong> z = (p̂₁ - p̂₂) / √[p̂<sub>pooled</sub>(1-p̂<sub>pooled</sub>)(1/n₁ + 1/n₂)]</li>
+                        <li><strong>Example Use:</strong> Testing if two teaching methods produce different passing rates</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Key Differences Table</h3>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>One Proportion</th>
+                    <th>Two Proportion</th>
+                </tr>
+                <tr>
+                    <td>Number of samples</td>
+                    <td>One</td>
+                    <td>Two</td>
+                </tr>
+                <tr>
+                    <td>What we're estimating/testing</td>
+                    <td>A single proportion p</td>
+                    <td>Difference between proportions (p₁ - p₂)</td>
+                </tr>
+                <tr>
+                    <td>Null hypothesis</td>
+                    <td>p = p₀ (specified value)</td>
+                    <td>p₁ = p₂ (no difference)</td>
+                </tr>
+                <tr>
+                    <td>Standard error formula</td>
+                    <td>√[p₀(1-p₀)/n] for tests<br>√[p̂(1-p̂)/n] for CIs</td>
+                    <td>√[p̂<sub>pooled</sub>(1-p̂<sub>pooled</sub>)(1/n₁ + 1/n₂)] for tests<br>√[p̂₁(1-p̂₁)/n₁ + p̂₂(1-p̂₂)/n₂] for CIs</td>
+                </tr>
+                <tr>
+                    <td>Pooled proportion needed?</td>
+                    <td>No</td>
+                    <td>Yes, for hypothesis tests only</td>
+                </tr>
+            </table>
+            
+            <div class="tip">
+                <h4>AP Exam Tip</h4>
+                <p>On the AP exam, make sure to identify whether a problem involves one or two proportions before selecting a method. Look for keywords like "difference," "compare," or "two groups" that suggest a two-proportion method is needed.</p>
+            </div>
+        </section>
+
+        <section class="section" id="practice">
+            <h2>Practice Problems</h2>
+            
+            <h3>One-Proportion Confidence Interval</h3>
+            <div class="example">
+                <p><strong>Problem 1:</strong> In a random sample of 200 AP Statistics students, 148 reported feeling confident about the exam. Construct a 95% confidence interval for the proportion of all AP Statistics students who feel confident.</p>
+                <p><button onclick="alert('p̂ = 148/200 = 0.74\nSE = √[0.74(0.26)/200] = 0.031\nCI: 0.74 ± 1.96(0.031) = (0.679, 0.801)')" style="padding: 5px 10px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Show Solution</button></p>
+            </div>
+            
+            <h3>Two-Proportion Confidence Interval</h3>
+            <div class="example">
+                <p><strong>Problem 2:</strong> Two groups of students took different review courses for the AP Statistics exam. In group A, 82 out of 120 passed. In group B, 71 out of 110 passed. Construct a 90% confidence interval for the difference in passing proportions.</p>
+                <p><button onclick="alert('p̂₁ = 82/120 = 0.683\np̂₂ = 71/110 = 0.645\nSE = √[0.683(0.317)/120 + 0.645(0.355)/110] = 0.064\nCI: (0.683 - 0.645) ± 1.645(0.064) = 0.038 ± 0.105 = (-0.067, 0.143)')" style="padding: 5px 10px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Show Solution</button></p>
+            </div>
+            
+            <h3>One-Proportion Hypothesis Test</h3>
+            <div class="example">
+                <p><strong>Problem 3:</strong> An AP Statistics teacher claims that 75% of students who complete practice problems regularly pass the exam. In a random sample of 80 students who practiced regularly, 54 passed. Is there evidence that the passing rate is different from the teacher's claim? Use α = 0.05.</p>
+                <p><button onclick="alert('H₀: p = 0.75\nH₁: p ≠ 0.75\np̂ = 54/80 = 0.675\nz = (0.675 - 0.75) / √[0.75(0.25)/80] = -0.075 / 0.0483 = -1.55\np-value = 2 × P(Z ≤ -1.55) = 2 × 0.0606 = 0.1212\nSince p-value > 0.05, fail to reject H₀')" style="padding: 5px 10px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Show Solution</button></p>
+            </div>
+            
+            <h3>Two-Proportion Hypothesis Test</h3>
+            <div class="example">
+                <p><strong>Problem 4:</strong> A researcher believes that students who study in groups have a higher pass rate than those who study alone. Among 90 group-studiers, 72 passed. Among 80 solo-studiers, 56 passed. Test the researcher's claim at α = 0.01.</p>
+                <p><button onclick="alert('H₀: p₁ = p₂\nH₁: p₁ > p₂\np̂₁ = 72/90 = 0.8\np̂₂ = 56/80 = 0.7\np̂pooled = (72 + 56)/(90 + 80) = 128/170 = 0.753\nz = (0.8 -
